@@ -11,13 +11,13 @@ import base64
 class IrActionsReport(models.Model):
     _inherit = 'ir.actions.report'
 
+    # All this code is based on the original method to produce barcodes
     @api.model
     def svg_barcode(self, barcode_type, value, width=300, height=30, humanreadable=0):
         """ Create a SVG barcode image.
 
         Returns a base64 svg image ready to put it on a `src` attribute of an `<img>` tag
         """
-        # All this code is based on hte original method to produce barcodes 
         if reportlab.__version__ >= '3.5.49':
             if barcode_type == 'UPCA' and len(value) in (11, 12, 13):
                 barcode_type = 'EAN13'
