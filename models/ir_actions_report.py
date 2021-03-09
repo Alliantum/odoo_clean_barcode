@@ -35,8 +35,9 @@ class IrActionsReport(models.Model):
                 else:
                     return self.svg_barcode('Code128', value, width=width, height=height, humanreadable=humanreadable)
         else:
-            raise UserError(f'An earlier version of reportlab is installed: {reportlab.__version__} \nVersion 3.5.49 is needed.',
+            user_error = (f'An earlier version of reportlab is installed: {reportlab.__version__} \nVersion 3.5.49 is needed.' +
             'See the readme (installation) of the module for more information')
+            raise UserError(user_error)
     
 
 class IrQweb(models.AbstractModel):
