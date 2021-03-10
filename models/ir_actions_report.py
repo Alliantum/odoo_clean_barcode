@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models
-from odoo.addons.base.models.ir_qweb import IrQWeb
 from reportlab.graphics.barcode import createBarcodeImageInMemory
 from odoo.exceptions import UserError
 import reportlab
@@ -40,7 +39,7 @@ class IrActionsReport(models.Model):
             raise UserError(user_error)
     
 
-class IrQweb(models.AbstractModel):
+class IrQWeb(models.AbstractModel):
     _inherit = 'ir.qweb'
 
     # with this method we automate the rendering proccess to change all the regular barcodes to the customs svg
