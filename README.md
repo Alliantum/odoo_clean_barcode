@@ -7,9 +7,6 @@
 </a>
 <a href="http://www.gnu.org/licenses/agpl-3.0-standalone.html">
 <img src="https://img.shields.io/badge/licence-AGPL--3-blue.svg?style=plastic"></img>
-</a>
-<img src="https://img.shields.io/badge/module%20version-1.0.0-F47D42.svg?style=plastic&"></img>
-</div>
 
 <div class="item" style="position: -webkit-sticky;
   position: sticky;
@@ -60,7 +57,7 @@ if you see a successfull instalation then you can go ahead and install the modul
 # Usage
 
 Just install this add-on and it will directly improve the quality print of **all the barcodes that are generated on a pdf**.<br/>
-> ##### We recomend restart your odoo server once the module is installed to prevent any problem, this would be more than enough :wink: 
+> ##### We recomend restart your odoo server once the module is installed to prevent any problem, this would be more than enough :wink:
 
 # Contributors
 
