@@ -15,5 +15,6 @@
     'license': 'AGPL-3',
     'version': '12.0.1.0.0',
     'depends': ['base'],
+    'pre_init_hook': 'version_check',
     'data': []
 }
