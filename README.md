@@ -15,7 +15,7 @@
   z-index: 10;
   top: 30px;">
 
-<img src="./static/description/icon2.png" style="
+<img src="./static/description/icon.png" style="
   transform:translateY(-2vw);
   width: 15vw;
   z-index: 10;"
