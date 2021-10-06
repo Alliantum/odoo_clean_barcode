@@ -23,7 +23,7 @@ class IrActionsReport(models.Model):
         try:
             width, height, humanreadable = int(width), int(height), bool(int(humanreadable))
             rst = createBarcodeImageInMemory(barcode_type, value=value, format='svg', width=width, height=height,
-                humanReadable=humanreadable)
+                humanreadable=humanreadable)
             e = base64.b64encode(bytes(rst, 'ascii'))
             return 'data:image/svg+xml;base64,' + str(e)[2:-1]
         except (ValueError, AttributeError):
@@ -40,5 +40,11 @@ class IrQWeb(models.AbstractModel):
     def _compile_node(self, el, options):
         if el.tag == "img" and any(((att=='t-att-src') and el.attrib[att].startswith("'/report/barcode/") and (' % ' in el.attrib[att])) for att in el.attrib):
             barcode_before = el.attrib.pop('t-att-src')
-            el.set('t-att-src', "request.env['ir.actions.report'].svg_barcode" + barcode_before.split(' % ')[1])
+            args = barcode_before.split(' % ')[1]
+            if "humanreadable=1" not in barcode_before:
+                el.set('t-att-src', "request.env['ir.actions.report'].svg_barcode" + args)
+            else:
+                el.set('t-att-src', barcode_before)
         return super(IrQWeb, self)._compile_node(el, options)
+# WH/OUT/00001
+# 019-031-02
