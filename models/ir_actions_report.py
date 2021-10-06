@@ -46,5 +46,3 @@ class IrQWeb(models.AbstractModel):
             else:
                 el.set('t-att-src', barcode_before)
         return super(IrQWeb, self)._compile_node(el, options)
-# WH/OUT/00001
-# 019-031-02
