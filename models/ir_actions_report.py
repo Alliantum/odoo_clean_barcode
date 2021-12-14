@@ -12,7 +12,7 @@ class IrActionsReport(models.Model):
     @api.model
     def reportlab_svg_barcode(self, type='', value='', width=300, height=30, humanreadable=0, **kwargs):
         """ Create a SVG barcode image.
-
+            This method named is though to follow the patter 'barcode.library_svg_barcode'
         Returns a base64 svg image ready to put it on a `src` attribute of an `<img>` tag
         """
         if type == 'UPCA' and len(value) in (11, 12, 13):
@@ -33,10 +33,11 @@ class IrActionsReport(models.Model):
 
     @api.model
     def get_svg_barcode(self, **kwargs):
-        # looking for modules extending the default type of barcodes
+        # looking for modules extending the default type of barcodes, they should concatenate values into this system parameter, that later will be used to call dynamically the method required to manage this kind of barcode
         barcodes_extended_libraries = self.env['ir.config_parameter'].sudo().get_param('barcodes.extended_libraries')
         if barcodes_extended_libraries:
             for barcode_library in barcodes_extended_libraries.split(','):
+                # trying with every library before fall back to reportlab
                 if hasattr(self, f'{barcode_library}_svg_barcode'):
                     barcode_value = getattr(self, f'{barcode_library}_svg_barcode')(**kwargs)
                     if barcode_value:
@@ -51,7 +52,7 @@ class IrQWeb(models.AbstractModel):
 
     # with this method we automate the rendering proccess to change all the regular barcodes to the customs svg
     def _compile_node(self, el, options):
-        # this is just working for urls of the shape '/report/barcode?params' but not those like '/report/barcode/<type>/<path:value>'. Also the param values must be interpolated using the % symbol
+        # this is just working for urls of the shape '/report/barcode?params' but not those like '/report/barcode/<type>/<path:value>'. Also the param values must be interpolated using the % symbol. For the rest os cases, we leave Odoo does as usual
         if el.tag == "img" and any(att == 't-att-src' and el.attrib[att].startswith("'/report/barcode/?") and (' % ' in el.attrib[att]) for att in el.attrib):
             barcode_before = el.attrib.pop('t-att-src')
             [url, args] = barcode_before.split(' % ')
