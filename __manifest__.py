@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Alliantum Clean Barcode",
-
     'summary': """
         Generates a svg vector image of a barcode in order to embed it into a pdf""",
 
@@ -11,10 +9,11 @@
     """,
     'author': "Alliantum",
     'website': "https://www.alliantum.com/",
-    'category': 'Uncategorized',
+    'category': 'Technical',
     'license': 'AGPL-3',
     'version': '12.0.1.0.0',
-    'depends': ['base'],
-    'pre_init_hook': 'version_check',
-    'data': []
+    'depends': [
+        'base'
+    ],
+    'pre_init_hook': 'version_check' # checks reportlab version. Ensure you have pip install reportlab==3.5.49 previously
 }
