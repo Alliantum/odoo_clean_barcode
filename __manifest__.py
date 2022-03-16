@@ -13,8 +13,9 @@
     'website': "https://www.alliantum.com/",
     'category': 'Uncategorized',
     'license': 'AGPL-3',
-    'version': '13.0.1.0.0',
-    'depends': ['base'],
-    'pre_init_hook': 'version_check',
-    'data': []
+    'version': '14.0.1.0.0',
+    'depends': [
+        'base'
+    ],
+    'pre_init_hook': 'version_check' # checks reportlab version. Ensure you have pip install reportlab==3.5.49 previously
 }
